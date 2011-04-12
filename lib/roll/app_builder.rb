@@ -103,7 +103,6 @@ module Roll
     end
 
     def configure_background_jobs_for_rspec
-      copy_file 'background_jobs_rspec.rb', 'spec/support/background_jobs.rb'
       run 'rails g delayed_job:active_record' if using_active_record?
       run 'rails g delayed_job'               if using_mongoid?
     end
@@ -204,6 +203,17 @@ end
       action_mailer_host 'test', 'www.example.com'
       action_mailer_host 'staging', "staging.#{app_name}.com"
       action_mailer_host 'production', "#{app_name}.com"
+    end
+
+    def configure_active_job
+      config = <<-RUBY
+    config.active_job.queue_adapter = :delayed_job
+
+      RUBY
+      test_config = 'config.active_job.queue_adapter = :inline'
+
+      inject_into_class 'config/application.rb', 'Application', config
+      configure_environment 'test', test_config
     end
 
     def configure_time_zone

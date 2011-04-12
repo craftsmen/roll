@@ -128,6 +128,7 @@ module Roll
 
     def configure_app
       say 'Configuring app'
+      build :configure_active_job
       build :configure_action_mailer
       build :configure_time_zone
       build :configure_time_formats
