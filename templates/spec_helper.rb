@@ -23,7 +23,9 @@ RSpec.configure do |config|
   config.include Features, type: :feature
   config.infer_base_class_for_anonymous_controllers = false
   config.order = 'random'
+  <% if using_active_record? -%>
   config.use_transactional_fixtures = false
+  <% end -%>
 end
 
 Capybara.javascript_driver = :webkit

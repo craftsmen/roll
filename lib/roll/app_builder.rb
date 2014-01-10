@@ -4,7 +4,7 @@ module Roll
 
     def replace_gemfile
       remove_file 'Gemfile'
-      copy_file 'Gemfile_clean', 'Gemfile'
+      template 'Gemfile.erb', 'Gemfile'
     end
 
     def set_ruby_to_version_being_used
@@ -72,7 +72,7 @@ module Roll
 
     def configure_rspec
       remove_file 'spec/spec_helper.rb'
-      copy_file 'spec_helper.rb', 'spec/spec_helper.rb'
+      template 'spec_helper.rb', 'spec/spec_helper.rb'
     end
 
     def use_spring_binstubs
@@ -81,11 +81,12 @@ module Roll
 
     def configure_background_jobs_for_rspec
       copy_file 'background_jobs_rspec.rb', 'spec/support/background_jobs.rb'
-      run 'rails g delayed_job:active_record'
+      run 'rails g delayed_job:active_record' if using_active_record?
+      run 'rails g delayed_job'               if using_mongoid?
     end
 
     def enable_database_cleaner
-      copy_file 'database_cleaner_rspec.rb', 'spec/support/database_cleaner.rb'
+      template 'database_cleaner_rspec.rb', 'spec/support/database_cleaner.rb'
     end
 
     def configure_spec_support_features
@@ -159,11 +160,13 @@ module Roll
     end
 
     def configure_time_zone
-      config = <<-RUBY
-    config.active_record.default_timezone = :utc
+      if using_active_record?
+        config = <<-RUBY
+      config.active_record.default_timezone = :utc
 
-      RUBY
-      inject_into_class 'config/application.rb', 'Application', config
+        RUBY
+        inject_into_class 'config/application.rb', 'Application', config
+      end
     end
 
     def configure_time_formats
@@ -250,6 +253,11 @@ module Roll
     def use_postgres_config_template
       template 'postgresql_database.yml.erb', 'config/database.yml',
         :force => true
+    end
+
+    def use_mongoid_config_template
+      remove_file 'config/database.yml'
+      template 'mongoid.yml.erb', 'config/mongoid.yml'
     end
 
     def create_database

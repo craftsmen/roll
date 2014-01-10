@@ -3,8 +3,12 @@ require 'rails/generators/rails/app/app_generator'
 
 module Roll
   class AppGenerator < Rails::Generators::AppGenerator
+
+    class_option :skip_active_record, type: :boolean, aliases: '-O', default: false,
+      desc: 'Skip Active Record files'
+
     class_option :database, :type => :string, :aliases => '-d', :default => 'postgresql',
-      :desc => "Preconfigure for selected database (options: #{DATABASES.join('/')})"
+      :desc => "Preconfigure for selected database (options: #{DATABASES.push('mongodb').join('/')})"
 
     class_option :heroku, :type => :boolean, :aliases => '-H', :default => false,
       :desc => 'Create staging Heroku apps'
@@ -146,6 +150,10 @@ module Roll
         build :use_postgres_config_template
       end
 
+      if using_mongoid?
+        build :use_mongoid_config_template
+      end
+
       build :create_database
     end
 
@@ -174,6 +182,10 @@ module Roll
 
     def using_active_record?
       !options[:skip_active_record]
+    end
+
+    def using_mongoid?
+      options[:database] == 'mongodb'
     end
   end
 end
