@@ -2,20 +2,20 @@ source 'https://rubygems.org'
 
 gem 'coffee-rails'
 <% if using_active_record? -%>
-  gem 'delayed_job_active_record', '>= 4.0.0'
+gem 'delayed_job_active_record', '>= 4.0.0'
 <% end -%>
 <% if using_mongoid? -%>
-  gem 'delayed_job_mongoid', github: 'collectiveidea/delayed_job_mongoid'
+gem 'delayed_job_mongoid', github: 'collectiveidea/delayed_job_mongoid'
 <% end -%>
 gem 'email_validator'
 gem 'high_voltage'
 gem 'jbuilder', '~> 1.2'
 gem 'jquery-rails'
 <% if using_active_record? -%>
-  gem 'pg'
+gem 'pg'
 <% end -%>
 <% if using_mongoid? -%>
-  gem 'mongoid', github: 'mongoid/mongoid'
+gem 'mongoid', github: 'mongoid/mongoid'
 <% end -%>
 gem 'rack-timeout'
 gem 'rails', '>= 4.0.0'
