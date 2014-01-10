@@ -13,6 +13,20 @@ module Roll
       create_file '.ruby-version', "#{RUBY_VERSION}-p#{RUBY_PATCHLEVEL}\n"
     end
 
+    def use_postgres_config_template
+      template 'postgresql_database.yml.erb', 'config/database.yml',
+        :force => true
+    end
+
+    def use_mongoid_config_template
+      remove_file 'config/database.yml'
+      template 'mongoid.yml.erb', 'config/mongoid.yml'
+    end
+
+    def create_database
+      bundle_command 'exec rake db:create db:migrate'
+    end
+
     def readme
       template 'README.md.erb', 'README.md'
     end
@@ -248,20 +262,6 @@ module Roll
 
     def init_git
       run 'git init'
-    end
-
-    def use_postgres_config_template
-      template 'postgresql_database.yml.erb', 'config/database.yml',
-        :force => true
-    end
-
-    def use_mongoid_config_template
-      remove_file 'config/database.yml'
-      template 'mongoid.yml.erb', 'config/mongoid.yml'
-    end
-
-    def create_database
-      bundle_command 'exec rake db:create db:migrate'
     end
 
     def create_heroku_apps

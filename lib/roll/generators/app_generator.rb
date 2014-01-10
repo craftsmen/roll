@@ -8,7 +8,10 @@ module Roll
       desc: 'Skip Active Record files'
 
     class_option :database, :type => :string, :aliases => '-d', :default => 'postgresql',
-      :desc => "Preconfigure for selected database (options: #{DATABASES.push('mongodb').join('/')})"
+      :desc => "Preconfigure for selected database (options: #{DATABASES.join('/')})"
+
+    class_option :mongoid, type: :boolean, aliases: '-M', default: false,
+      desc: 'Use Mongoid ODM'
 
     class_option :heroku, :type => :boolean, :aliases => '-H', :default => false,
       :desc => 'Create staging Heroku apps'
@@ -23,6 +26,8 @@ module Roll
 
     def roll_customization
       invoke :customize_gemfile
+      invoke :setup_mongoid
+      invoke :setup_database
       invoke :setup_development_environment
       invoke :setup_test_environment
       invoke :setup_production_environment
@@ -36,7 +41,6 @@ module Roll
       invoke :customize_error_pages
       invoke :remove_routes_comment_lines
       invoke :setup_git
-      invoke :setup_database
       invoke :create_heroku_apps
       invoke :outro
     end
@@ -45,6 +49,26 @@ module Roll
       build :replace_gemfile
       build :set_ruby_to_version_being_used
       bundle_command 'install'
+    end
+
+    def setup_mongoid
+      if !options[:skip_active_record] && options[:mongoid]
+        raise Thor::Error, 'Active Record should be skipped when using mongoid. For details run: roll --help'
+      end
+    end
+
+    def setup_database
+      say 'Setting up database'
+
+      if 'postgresql' == options[:database]
+        build :use_postgres_config_template
+      end
+
+      if using_mongoid?
+        build :use_mongoid_config_template
+      end
+
+      build :create_database
     end
 
     def setup_development_environment
@@ -143,20 +167,6 @@ module Roll
       build :init_git
     end
 
-    def setup_database
-      say 'Setting up database'
-
-      if 'postgresql' == options[:database]
-        build :use_postgres_config_template
-      end
-
-      if using_mongoid?
-        build :use_mongoid_config_template
-      end
-
-      build :create_database
-    end
-
     def create_heroku_apps
       if options[:heroku]
         say 'Creating Heroku apps'
@@ -185,7 +195,7 @@ module Roll
     end
 
     def using_mongoid?
-      options[:database] == 'mongodb'
+      options[:mongoid]
     end
   end
 end
