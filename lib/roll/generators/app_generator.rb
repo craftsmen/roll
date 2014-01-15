@@ -127,11 +127,6 @@ module Roll
       build :setup_foreman
     end
 
-    def setup_javascripts
-      say 'Setting up javascripts'
-      build :create_common_javascripts
-    end
-
     def setup_stylesheets
       say 'Setting up stylesheets'
       build :setup_stylesheets

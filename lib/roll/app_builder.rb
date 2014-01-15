@@ -211,10 +211,6 @@ module Roll
       copy_file 'Procfile', 'Procfile'
     end
 
-    def create_common_javascripts
-      directory 'javascripts', 'app/assets/javascripts'
-    end
-
     def setup_stylesheets
       remove_file 'app/assets/stylesheets/application.css'
       copy_file 'application.css.scss',
