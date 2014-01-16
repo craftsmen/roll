@@ -35,7 +35,6 @@ module Roll
       invoke :setup_secret_token
       invoke :create_roll_views
       invoke :configure_app
-      invoke :setup_javascripts
       invoke :setup_stylesheets
       invoke :copy_miscellaneous_files
       invoke :customize_error_pages
