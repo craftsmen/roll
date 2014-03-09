@@ -136,10 +136,17 @@ module Roll
     end
 
     def setup_staging_environment
-      run 'cp config/environments/production.rb config/environments/staging.rb'
+      staging_file = 'config/environments/staging.rb'
+      copy_file 'staging.rb', staging_file
 
-      prepend_file 'config/environments/staging.rb',
-        "Mail.register_interceptor RecipientInterceptor.new(ENV['EMAIL_RECIPIENTS'])\n"
+      config = <<-RUBY
+
+  #{app_name.classify}::Application.configure do
+    # ...
+  end
+      RUBY
+
+      append_file staging_file, config
     end
 
     def setup_secret_token
