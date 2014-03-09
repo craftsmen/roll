@@ -190,6 +190,14 @@ module Roll
       end
     end
 
+    def fix_i18n_deprecation_warning
+      config = <<-RUBY
+    config.i18n.enforce_available_locales = true
+
+      RUBY
+      inject_into_class 'config/application.rb', 'Application', config
+    end
+
     def configure_time_formats
       remove_file 'config/locales/en.yml'
       copy_file 'config_locales_en.yml', 'config/locales/en.yml'

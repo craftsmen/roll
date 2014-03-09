@@ -119,6 +119,7 @@ module Roll
       build :configure_action_mailer
       build :configure_time_zone
       build :configure_time_formats
+      build :fix_i18n_deprecation_warning
       build :configure_rack_timeout
       build :disable_xml_params
       build :setup_default_rake_task
