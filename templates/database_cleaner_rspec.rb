@@ -1,5 +1,5 @@
 RSpec.configure do |config|
-  <% if using_active_record? -%>
+<% if using_active_record? -%>
   config.before(:suite) do
     DatabaseCleaner.clean_with(:deletion)
   end
@@ -19,10 +19,8 @@ RSpec.configure do |config|
   config.after(:each) do
     DatabaseCleaner.clean
   end
-  <% end -%>
-
-
-  <% if using_mongoid? -%>
+<% end -%>
+<% if using_mongoid? -%>
   config.before(:suite) do
     DatabaseCleaner[:mongoid].clean_with(:truncation)
   end
@@ -38,5 +36,5 @@ RSpec.configure do |config|
   config.after(:each) do
     DatabaseCleaner[:mongoid].clean
   end
-  <% end -%>
+<% end -%>
 end

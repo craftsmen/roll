@@ -141,9 +141,9 @@ module Roll
 
       config = <<-RUBY
 
-  #{app_name.classify}::Application.configure do
-    # ...
-  end
+#{app_name.classify}::Application.configure do
+  # ...
+end
       RUBY
 
       append_file staging_file, config
@@ -183,7 +183,7 @@ module Roll
     def configure_time_zone
       if using_active_record?
         config = <<-RUBY
-      config.active_record.default_timezone = :utc
+    config.active_record.default_timezone = :utc
 
         RUBY
         inject_into_class 'config/application.rb', 'Application', config
