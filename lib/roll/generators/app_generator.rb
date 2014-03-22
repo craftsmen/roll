@@ -7,17 +7,17 @@ module Roll
     class_option :skip_active_record, type: :boolean, aliases: '-O', default: false,
       desc: 'Skip Active Record files'
 
-    class_option :database, :type => :string, :aliases => '-d', :default => 'postgresql',
-      :desc => "Preconfigure for selected database (options: #{DATABASES.join('/')})"
+    class_option :database, type: :string, aliases: '-d', default: 'postgresql',
+      desc: "Preconfigure for selected database (options: #{DATABASES.join('/')})"
 
     class_option :mongoid, type: :boolean, aliases: '-M', default: false,
       desc: 'Use Mongoid ODM'
 
-    class_option :heroku, :type => :boolean, :aliases => '-H', :default => false,
-      :desc => 'Create staging Heroku apps'
+    class_option :heroku, type: :boolean, aliases: '-H', default: false,
+      desc: 'Create staging Heroku apps'
 
-    class_option :skip_test_unit, :type => :boolean, :aliases => '-T', :default => true,
-      :desc => 'Skip Test::Unit files'
+    class_option :skip_test_unit, type: :boolean, aliases: '-T', default: true,
+      desc: 'Skip Test::Unit files'
 
     def finish_template
       invoke :roll_customization

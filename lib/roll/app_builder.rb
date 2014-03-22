@@ -15,7 +15,7 @@ module Roll
 
     def use_postgres_config_template
       template 'postgresql_database.yml.erb', 'config/database.yml',
-        :force => true
+        force: true
     end
 
     def use_mongoid_config_template
@@ -121,7 +121,7 @@ module Roll
       RUBY
 
       inject_into_file 'config/environments/production.rb', config,
-        :after => 'config.action_mailer.raise_delivery_errors = false'
+        after: 'config.action_mailer.raise_delivery_errors = false'
     end
 
     def enable_rack_deflater
@@ -132,7 +132,7 @@ module Roll
       RUBY
 
       inject_into_file 'config/environments/production.rb', config,
-        :after => "config.serve_static_assets = false\n"
+        after: "config.serve_static_assets = false\n"
     end
 
     def setup_staging_environment
@@ -152,7 +152,7 @@ end
     def setup_secret_token
       template 'secret_token.rb',
         'config/initializers/secret_token.rb',
-        :force => true
+        force: true
     end
 
     def create_partials_directory
@@ -170,7 +170,7 @@ end
     def create_application_layout
       template 'roll_layout.html.erb.erb',
         'app/views/layouts/application.html.erb',
-        :force => true
+        force: true
     end
 
     def configure_action_mailer
@@ -213,7 +213,7 @@ end
 
     def setup_default_rake_task
       append_file 'Rakefile' do
-        "task(:default).clear\ntask :default => [:spec]\n"
+        "task(:default).clear\ntask default: [:spec]\n"
       end
     end
 
@@ -243,7 +243,7 @@ end
       EOS
 
       %w(500 404 422).each do |page|
-        inject_into_file "public/#{page}.html", meta_tags, :after => "<head>\n"
+        inject_into_file "public/#{page}.html", meta_tags, after: "<head>\n"
         replace_in_file "public/#{page}.html", /<!--.+-->\n/, ''
       end
     end
