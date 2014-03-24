@@ -8,9 +8,7 @@ module Roll
     end
 
     def set_ruby_to_version_being_used
-      inject_into_file 'Gemfile', "\n\nruby '#{RUBY_VERSION}'",
-        after: /source 'https:\/\/rubygems.org'/
-      create_file '.ruby-version', "#{RUBY_VERSION}#{patchlevel}\n"
+      template 'ruby-version.erb', '.ruby-version'
     end
 
     def use_postgres_config_template
@@ -106,6 +104,10 @@ module Roll
     def configure_spec_support_features
       empty_directory_with_keep_file 'spec/features'
       empty_directory_with_keep_file 'spec/support/features'
+    end
+
+    def configure_travis
+      template 'travis.yml.erb', '.travis.yml'
     end
 
     def configure_smtp
@@ -311,14 +313,6 @@ git remote add staging git@heroku.com:#{app_name}-staging.git
 
     def generate_secret
       SecureRandom.hex(64)
-    end
-
-    def patchlevel
-      if RUBY_PATCHLEVEL == 0 && RUBY_VERSION >= '2.1.0'
-        ''
-      else
-        "-p#{RUBY_PATCHLEVEL}"
-      end
     end
   end
 end
