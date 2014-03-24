@@ -88,6 +88,7 @@ module Roll
       build :configure_background_jobs_for_rspec
       build :enable_database_cleaner
       build :configure_spec_support_features
+      build :configure_travis
     end
 
     def setup_production_environment
@@ -179,6 +180,10 @@ module Roll
       # Let's not: We'll bundle manually at the right spot
     end
 
+    def ruby_version_with_patch_level
+      "#{RUBY_VERSION}#{patch_level}"
+    end
+
     protected
 
     def get_builder_class
@@ -191,6 +196,14 @@ module Roll
 
     def using_mongoid?
       options[:mongoid]
+    end
+
+    def patch_level
+      if RUBY_PATCHLEVEL == 0 && RUBY_VERSION >= '2.1.0'
+        ''
+      else
+        "-p#{RUBY_PATCHLEVEL}"
+      end
     end
   end
 end

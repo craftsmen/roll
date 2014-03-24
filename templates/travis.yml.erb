@@ -1,0 +1,17 @@
+language: ruby
+rvm: ruby-<%= ruby_version_with_patch_level %>
+
+cache: bundler
+
+before_install:
+  - "echo 'gem: --no-document' > ~/.gemrc"
+  - "echo '--colour' > ~/.rspec"
+
+before_script:
+  - cp .sample.env .env
+
+notifications:
+  email: false
+  irc:
+    channels: 'chat.freenode.net#craftsmen'
+    template: '%{repository_name} build #%{build_number} on %{branch} by %{author} finished: %{message}: %{build_url}'
