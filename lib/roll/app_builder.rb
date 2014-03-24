@@ -226,10 +226,10 @@ end
       copy_file 'Procfile', 'Procfile'
     end
 
-    def setup_stylesheets
+    def setup_zurb_foundation
+      copy_file 'foundation_and_overrides.scss', 'app/assets/stylesheets/foundation_and_overrides.scss'
       remove_file 'app/assets/stylesheets/application.css'
-      copy_file 'application.css.scss',
-        'app/assets/stylesheets/application.css.scss'
+      copy_file 'application.css.scss', 'app/assets/stylesheets/application.css.scss'
     end
 
     def copy_miscellaneous_files

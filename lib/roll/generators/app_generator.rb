@@ -35,7 +35,7 @@ module Roll
       invoke :setup_secret_token
       invoke :create_roll_views
       invoke :configure_app
-      invoke :setup_stylesheets
+      invoke :setup_zurb_foundation
       invoke :copy_miscellaneous_files
       invoke :customize_error_pages
       invoke :remove_routes_comment_lines
@@ -127,9 +127,9 @@ module Roll
       build :setup_foreman
     end
 
-    def setup_stylesheets
-      say 'Setting up stylesheets'
-      build :setup_stylesheets
+    def setup_zurb_foundation
+      say 'Setting up ZURB foundation'
+      build :setup_zurb_foundation
     end
 
     def copy_miscellaneous_files
