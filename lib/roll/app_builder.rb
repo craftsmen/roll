@@ -106,6 +106,10 @@ module Roll
       empty_directory_with_keep_file 'spec/support/features'
     end
 
+    def configure_i18n_in_specs
+      copy_file 'i18n.rb', 'spec/support/i18n.rb'
+    end
+
     def configure_travis
       template 'travis.yml.erb', '.travis.yml'
     end
