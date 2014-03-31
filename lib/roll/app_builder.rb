@@ -277,7 +277,7 @@ end
 
     def create_heroku_apps
       path_addition = override_path_for_tests
-      run "#{path_addition} heroku create #{app_name}-staging --remote=staging"
+      run "#{path_addition} heroku create #{app_name}-staging --remote=staging --region eu"
       run "#{path_addition} heroku config:set RACK_ENV=staging RAILS_ENV=staging --remote=staging"
     end
 
