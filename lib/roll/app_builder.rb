@@ -82,10 +82,6 @@ module Roll
       template 'spec_helper.rb', 'spec/spec_helper.rb'
     end
 
-    def use_spring_binstubs
-      run 'bundle exec spring binstub --all'
-    end
-
     def configure_background_jobs_for_rspec
       copy_file 'background_jobs_rspec.rb', 'spec/support/background_jobs.rb'
       run 'rails g delayed_job:active_record' if using_active_record?
@@ -142,7 +138,7 @@ module Roll
 
       config = <<-RUBY
 
-#{app_name.classify}::Application.configure do
+Rails::Application.configure do
   # ...
 end
       RUBY
@@ -251,8 +247,8 @@ end
 
     def remove_routes_comment_lines
       replace_in_file 'config/routes.rb',
-        /Application\.routes\.draw do.*end/m,
-        "Application.routes.draw do\nend"
+        /Rails\.application\.routes\.draw do.*end/m,
+        "Rails.application.routes.draw do\nend"
     end
 
     def gitignore_files

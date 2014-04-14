@@ -83,7 +83,6 @@ module Roll
       build :set_up_factory_girl_for_rspec
       build :generate_rspec
       build :configure_rspec
-      build :use_spring_binstubs
       build :configure_background_jobs_for_rspec
       build :enable_database_cleaner
       build :configure_spec_support_features
