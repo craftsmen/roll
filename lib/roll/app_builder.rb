@@ -279,7 +279,7 @@ end
     def create_heroku_apps
       path_addition = override_path_for_tests
       run "#{path_addition} heroku create #{app_name}-staging --remote=staging"
-      run "#{path_addition} heroku config:add RACK_ENV=staging RAILS_ENV=staging --remote=staging"
+      run "#{path_addition} heroku config:set RACK_ENV=staging RAILS_ENV=staging --remote=staging"
     end
 
     def set_heroku_remotes
@@ -294,7 +294,7 @@ git remote add staging git@heroku.com:#{app_name}-staging.git
 
     def set_heroku_rails_secrets
       path_addition = override_path_for_tests
-      run "#{path_addition} heroku config:add SECRET_KEY_BASE=#{generate_secret} --remote=staging"
+      run "#{path_addition} heroku config:set SECRET_KEY_BASE=#{generate_secret} --remote=staging"
     end
 
     private
