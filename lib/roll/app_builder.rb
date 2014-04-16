@@ -138,7 +138,7 @@ module Roll
 
       config = <<-RUBY
 
-Rails::Application.configure do
+Rails.application.configure do
   # ...
 end
       RUBY
