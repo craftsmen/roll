@@ -147,9 +147,7 @@ end
     end
 
     def setup_secret_token
-      template 'secret_token.rb',
-        'config/initializers/secret_token.rb',
-        force: true
+      template 'secrets.yml', 'config/secrets.yml', force: true
     end
 
     def create_partials_directory
