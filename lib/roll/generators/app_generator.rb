@@ -199,7 +199,7 @@ module Roll
     end
 
     def patch_level
-      if RUBY_PATCHLEVEL == 0 && RUBY_VERSION >= '2.1.0'
+      if RUBY_VERSION >= '2.1.0'
         ''
       else
         "-p#{RUBY_PATCHLEVEL}"
