@@ -4,7 +4,7 @@ ruby '<%= RUBY_VERSION %>'
 
 gem 'coffee-rails'
 <% if using_active_record? -%>
-gem 'delayed_job_active_record', '>= 4.0.0'
+gem 'delayed_job_active_record'
 <% end -%>
 <% if using_mongoid? -%>
 gem 'delayed_job_mongoid', github: 'collectiveidea/delayed_job_mongoid'
@@ -21,9 +21,9 @@ gem 'pg'
 gem 'mongoid', github: 'mongoid/mongoid'
 <% end -%>
 gem 'rack-timeout'
-gem 'rails', '>= 4.0.4'
+gem 'rails', '~> 4.1.0'
 gem 'recipient_interceptor'
-gem 'sass-rails', '>= 4.0.2'
+gem 'sass-rails'
 gem 'simple_form'
 gem 'turbolinks'
 gem 'uglifier'
@@ -44,7 +44,7 @@ end
 group :test do
   gem 'capybara-webkit', '>= 1.0.0'
   gem 'database_cleaner'
-  gem 'shoulda-matchers'
+  gem 'shoulda-matchers', '>= 2.6.0'
   gem 'simplecov', require: false
   gem 'timecop'
   gem 'webmock'
