@@ -106,10 +106,10 @@ module Roll
     end
 
     def configure_smtp
-      copy_file 'smtp.rb', 'config/initializers/smtp.rb'
+      copy_file 'smtp.rb', 'config/smtp.rb'
 
       prepend_file 'config/environments/production.rb',
-        "require Rails.root.join('config/initializers/smtp')\n"
+        "require Rails.root.join('config/smtp')\n"
 
       config = <<-RUBY
 
