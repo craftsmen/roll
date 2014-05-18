@@ -47,6 +47,11 @@ module Roll
     def customize_gemfile
       build :replace_gemfile
       build :set_ruby_to_version_being_used
+
+      if options[:heroku]
+        build :setup_heroku_specific_gems
+      end
+
       bundle_command 'install'
     end
 

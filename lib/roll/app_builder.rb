@@ -11,6 +11,11 @@ module Roll
       template 'ruby-version.erb', '.ruby-version'
     end
 
+    def setup_heroku_specific_gems
+      inject_into_file 'Gemfile', "\n\s\sgem 'rails_12factor'",
+        after: /group :staging, :production do/
+    end
+
     def use_postgres_config_template
       template 'postgresql_database.yml.erb', 'config/database.yml',
         force: true
