@@ -106,6 +106,10 @@ module Roll
       copy_file 'i18n.rb', 'spec/support/i18n.rb'
     end
 
+    def configure_action_mailer_in_specs
+      copy_file 'action_mailer.rb', 'spec/support/action_mailer.rb'
+    end
+
     def configure_travis
       template 'travis.yml.erb', '.travis.yml'
     end

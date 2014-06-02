@@ -92,6 +92,7 @@ module Roll
       build :enable_database_cleaner
       build :configure_spec_support_features
       build :configure_i18n_in_specs
+      build :configure_action_mailer_in_specs
       build :configure_travis
     end
 
