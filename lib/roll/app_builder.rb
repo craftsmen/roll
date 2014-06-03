@@ -74,6 +74,10 @@ module Roll
       inject_into_class 'config/application.rb', 'Application', config
     end
 
+    def configure_hound
+      template 'hound.yml.erb', '.hound.yml'
+    end
+
     def set_up_factory_girl_for_rspec
       copy_file 'factory_girl_rspec.rb', 'spec/support/factory_girl.rb'
     end
