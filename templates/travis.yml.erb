@@ -1,5 +1,5 @@
 language: ruby
-rvm: ruby-<%= ruby_version_with_patch_level %>
+rvm: <%= ruby_version_with_patch_level %>
 
 cache: bundler
 
@@ -9,6 +9,7 @@ before_install:
 
 before_script:
   - cp .sample.env .env
+  - bundle exec rake db:create db:schema:load RAILS_ENV=test
 
 notifications:
   email: false
