@@ -81,6 +81,7 @@ module Roll
       build :raise_on_unpermitted_parameters
       build :provide_setup_script
       build :configure_generators
+      build :configure_hound
     end
 
     def setup_test_environment
