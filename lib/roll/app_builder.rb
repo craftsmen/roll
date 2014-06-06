@@ -74,6 +74,18 @@ module Roll
       inject_into_class 'config/application.rb', 'Application', config
     end
 
+    def configure_mailers_preview_path
+      config = <<-RUBY
+
+
+  # Specific mailers path
+  config.action_mailer.preview_path = Rails.root + '/spec/mailers/previews'
+      RUBY
+
+      empty_directory_with_keep_file 'spec/mailers/previews'
+      inject_into_file 'config/environments/development.rb', config, before: "\nend"
+    end
+
     def configure_hound
       template 'hound.yml.erb', '.hound.yml'
     end
