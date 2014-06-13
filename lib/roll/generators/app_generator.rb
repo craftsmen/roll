@@ -101,6 +101,7 @@ module Roll
       say 'Setting up the production environment'
       build :configure_smtp
       build :enable_rack_deflater
+      build :configure_newrelic
     end
 
     def setup_staging_environment
