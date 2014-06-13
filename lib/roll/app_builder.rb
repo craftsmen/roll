@@ -145,6 +145,10 @@ module Roll
         after: "config.serve_static_assets = false\n"
     end
 
+    def configure_newrelic
+      template 'newrelic.yml.erb', 'config/newrelic.yml'
+    end
+
     def setup_staging_environment
       staging_file = 'config/environments/staging.rb'
       copy_file 'staging.rb', staging_file
