@@ -239,7 +239,16 @@ end
 
     def setup_default_rake_task
       append_file 'Rakefile' do
-        "task(:default).clear\ntask default: [:spec]\n"
+        <<-EOS
+task(:default).clear
+task default: [:spec]
+if defined? RSpec
+  task(:spec).clear
+  RSpec::Core::RakeTask.new(:spec) do |t|
+    t.verbose = false
+  end
+end
+        EOS
       end
     end
 
