@@ -315,9 +315,10 @@ end
     end
 
     def create_heroku_apps
-      path_addition = override_path_for_tests
-      run "#{path_addition} heroku create #{app_name}-staging --remote=staging --region eu"
-      run "#{path_addition} heroku config:set RACK_ENV=staging RAILS_ENV=staging --remote=staging"
+      %w(staging production).each do |environment|
+        run "heroku create #{app_name}-#{environment} --remote #{environment} --region eu"
+        run "heroku config:set RACK_ENV=#{environment} RAILS_ENV=#{environment} --remote #{environment}"
+      end
     end
 
     def set_heroku_remotes
@@ -325,24 +326,19 @@ end
 
 # Set up staging and production git remotes
 git remote add staging git@heroku.com:#{app_name}-staging.git
+git remote add production git@heroku.com:#{app_name}-production.git
       RUBY
 
       append_file 'bin/setup', remotes
     end
 
     def set_heroku_rails_secrets
-      path_addition = override_path_for_tests
-      run "#{path_addition} heroku config:set SECRET_KEY_BASE=#{generate_secret} --remote=staging"
+      %w(staging production).each do |environment|
+        run "heroku config:set SECRET_KEY_BASE=#{generate_secret} --remote #{environment}"
+      end
     end
 
     private
-
-    def override_path_for_tests
-      if ENV['TESTING']
-        support_bin = File.expand_path(File.join('..', '..', '..', 'features', 'support', 'bin'))
-        "PATH=#{support_bin}:$PATH"
-      end
-    end
 
     def factories_spec_rake_task
       IO.read find_in_source_paths('factories_spec_rake_task.rb')
