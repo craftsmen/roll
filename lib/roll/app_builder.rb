@@ -12,8 +12,11 @@ module Roll
     end
 
     def setup_heroku_specific_gems
-      inject_into_file 'Gemfile', "\n\s\sgem 'rails_12factor'",
+      inject_into_file(
+        'Gemfile',
+        %{\n\s\sgem 'rails_stdout_logging'},
         after: /group :staging, :production do/
+      )
     end
 
     def use_postgres_config_template
@@ -54,7 +57,7 @@ module Roll
     end
 
     def provide_setup_script
-      copy_file 'bin_setup', 'bin/setup'
+      copy_file 'bin_setup', 'bin/setup', force: true
       run 'chmod a+x bin/setup'
     end
 
@@ -159,8 +162,11 @@ module Roll
   config.middleware.use Rack::Deflater
       RUBY
 
-      inject_into_file 'config/environments/production.rb', config,
-        after: "config.serve_static_assets = false\n"
+      inject_into_file(
+        'config/environments/production.rb',
+        config,
+        after: "config.serve_static_assets = ENV['RAILS_SERVE_STATIC_FILES'].present?"
+      )
     end
 
     def configure_newrelic

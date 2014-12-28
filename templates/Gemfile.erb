@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 ruby '<%= RUBY_VERSION %>'
 
-gem 'coffee-rails'
+gem 'coffee-rails', '~> 4.1.0'
 <% if using_active_record? -%>
 gem 'delayed_job_active_record'
 <% end -%>
@@ -21,9 +21,9 @@ gem 'pg'
 gem 'mongoid', github: 'mongoid/mongoid'
 <% end -%>
 gem 'rack-timeout'
-gem 'rails', '~> 4.1.0'
+gem 'rails', '~> 4.2.0'
 gem 'recipient_interceptor'
-gem 'sass-rails', '~> 4.0.3'
+gem 'sass-rails', '~> 5.0'
 gem 'simple_form'
 gem 'turbolinks'
 gem 'uglifier'
@@ -33,6 +33,7 @@ group :development do
   gem 'foreman'
   gem 'spring'
   gem 'spring-commands-rspec'
+  gem 'web-console'
 end
 
 group :development, :test do
