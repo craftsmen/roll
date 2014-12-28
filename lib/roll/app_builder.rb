@@ -233,6 +233,10 @@ end
       copy_file 'rack_timeout.rb', 'config/initializers/rack_timeout.rb'
     end
 
+    def configure_simple_form
+      bundle_command 'exec rails generate simple_form:install'
+    end
+
     def disable_xml_params
       copy_file 'disable_xml_params.rb', 'config/initializers/disable_xml_params.rb'
     end
