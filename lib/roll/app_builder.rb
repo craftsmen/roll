@@ -342,6 +342,22 @@ git remote add production git@heroku.com:#{app_name}-production.git
       end
     end
 
+    def provide_deploy_script
+      copy_file 'bin_deploy', 'bin/deploy'
+      run 'chmod a+x bin/deploy'
+
+      instructions = <<-MARKDOWN
+## Deploying
+
+If you have previously run the `./bin/setup` script,
+you can deploy to staging and production with:
+    $ ./bin/deploy staging
+    $ ./bin/deploy production
+      MARKDOWN
+
+      append_file 'README.md', instructions
+    end
+
     private
 
     def factories_spec_rake_task

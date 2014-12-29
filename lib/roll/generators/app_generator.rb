@@ -179,6 +179,7 @@ module Roll
         build :create_heroku_apps
         build :set_heroku_remotes
         build :set_heroku_rails_secrets
+        build :provide_deploy_script
       end
     end
 
