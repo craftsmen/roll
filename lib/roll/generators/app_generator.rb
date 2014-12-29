@@ -80,6 +80,7 @@ module Roll
       build :raise_on_delivery_errors
       build :raise_on_unpermitted_parameters
       build :provide_setup_script
+      build :provide_dev_prime_task
       build :configure_generators
       build :configure_hound
     end

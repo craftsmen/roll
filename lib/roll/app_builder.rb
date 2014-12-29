@@ -58,6 +58,10 @@ module Roll
       run 'chmod a+x bin/setup'
     end
 
+    def provide_dev_prime_task
+      copy_file 'dev_prime_task.rb', 'lib/tasks/dev.rake'
+    end
+
     def configure_generators
       config = <<-RUBY
     config.generators do |generate|
