@@ -1,6 +1,9 @@
 language: ruby
 rvm: <%= RUBY_VERSION %>
 
+addons:
+  - postgresql: '9.3'
+
 cache: bundler
 
 before_install:
