@@ -86,7 +86,7 @@ module Roll
 
 
   # Specific mailers path
-  config.action_mailer.preview_path = Rails.root + '/spec/mailers/previews'
+  config.action_mailer.preview_path = Rails.root.join('spec/mailers/previews')
       RUBY
 
       empty_directory_with_keep_file 'spec/mailers/previews'
