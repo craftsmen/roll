@@ -275,10 +275,13 @@ end
       copy_file 'Procfile', 'Procfile'
     end
 
-    def setup_zurb_foundation
-      copy_file 'foundation_and_overrides.scss', 'app/assets/stylesheets/foundation_and_overrides.scss'
+    def setup_bourbon
       remove_file 'app/assets/stylesheets/application.css'
-      copy_file 'application.css.scss', 'app/assets/stylesheets/application.css.scss'
+      copy_file 'application.scss', 'app/assets/stylesheets/application.scss'
+    end
+
+    def install_bitters
+      run 'bitters install --path app/assets/stylesheets'
     end
 
     def copy_miscellaneous_files
