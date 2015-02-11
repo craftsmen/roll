@@ -21,4 +21,5 @@ Gem::Specification.new do |spec|
   spec.required_ruby_version = '>= 1.9.2'
   spec.add_dependency 'bundler', '~> 1.3'
   spec.add_dependency 'rails', '~> 4.2.0'
+  spec.add_dependency 'bitters', '~> 1.0.0'
 end
