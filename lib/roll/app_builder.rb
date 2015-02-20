@@ -94,7 +94,10 @@ module Roll
     end
 
     def configure_hound
-      template 'hound.yml.erb', '.hound.yml'
+      copy_file 'hound.yml', '.hound.yml'
+      copy_file 'style_guides/ruby.yml', 'config/style_guides/ruby.yml'
+      copy_file 'style_guides/javascript.json', 'config/style_guides/javascript.json'
+      copy_file 'style_guides/javascript_ignore', 'config/style_guides/.javascript_ignore'
     end
 
     def set_up_factory_girl_for_rspec

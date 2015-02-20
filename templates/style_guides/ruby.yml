@@ -15,17 +15,11 @@ ClassLength:
   Max: 100
 
 LineLength:
-  Enabled: false
+  Enabled: 100
 
 MethodLength:
   CountComments: false
   Max: 15
-
-BlockNesting:
-  Max: 2
-
-Documentation:
-  Enabled: false
 
 HashSyntax:
   EnforcedStyle: ruby19
