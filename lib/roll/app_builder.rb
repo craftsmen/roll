@@ -331,9 +331,9 @@ end
       run 'git init'
     end
 
-    def create_heroku_apps
+    def create_heroku_apps(flags)
       %w(staging production).each do |environment|
-        run "heroku create #{app_name}-#{environment} --remote #{environment} --region eu"
+        run "heroku create #{app_name}-#{environment} --remote #{environment} #{flags}"
         run "heroku config:set RACK_ENV=#{environment} RAILS_ENV=#{environment} --remote #{environment}"
         run "heroku config:set RAILS_SERVE_STATIC_FILES=true --remote #{environment}"
       end

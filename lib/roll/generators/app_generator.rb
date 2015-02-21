@@ -13,8 +13,11 @@ module Roll
     class_option :mongoid, type: :boolean, aliases: '-M', default: false,
       desc: 'Use Mongoid ODM'
 
+    class_option :heroku_flags, type: :string, default: '--region eu',
+      desc: 'Set extra Heroku flags'
+
     class_option :skip_heroku, type: :boolean, default: false,
-      desc: 'Create staging Heroku apps'
+      desc: 'Skip creating staging and production Heroku apps'
 
     class_option :skip_test_unit, type: :boolean, aliases: '-T', default: true,
       desc: 'Skip Test::Unit files'
@@ -182,7 +185,7 @@ module Roll
     def create_heroku_apps
       if !options[:skip_heroku]
         say 'Creating Heroku apps'
-        build :create_heroku_apps
+        build :create_heroku_apps, options[:heroku_flags]
         build :set_heroku_remotes
         build :set_heroku_rails_secrets
         build :provide_deploy_script
