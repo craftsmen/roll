@@ -13,7 +13,7 @@ module Roll
     class_option :mongoid, type: :boolean, aliases: '-M', default: false,
       desc: 'Use Mongoid ODM'
 
-    class_option :heroku, type: :boolean, aliases: '-H', default: false,
+    class_option :skip_heroku, type: :boolean, default: false,
       desc: 'Create staging Heroku apps'
 
     class_option :skip_test_unit, type: :boolean, aliases: '-T', default: true,
@@ -180,7 +180,7 @@ module Roll
     end
 
     def create_heroku_apps
-      if options[:heroku]
+      if !options[:skip_heroku]
         say 'Creating Heroku apps'
         build :create_heroku_apps
         build :set_heroku_remotes
