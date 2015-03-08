@@ -138,7 +138,6 @@ module Roll
       build :setup_default_rake_task
       build :configure_unicorn
       build :setup_foreman
-      build :configure_mailers_preview_path
       build :raise_on_unpermitted_parameters
     end
 
