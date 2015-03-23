@@ -1,41 +1,41 @@
-AllCops:
-  Include:
-    - 'Gemfile'
-    - 'Rakefile'
-  Exclude:
-    - 'bin/*'
-    - 'db/schema.rb'
-    - 'db/migrate/*'
-
-ParameterLists:
+Metrics/ParameterLists:
+  Description: Avoid parameter lists longer than three or four parameters.
+  Enabled: true
   Max: 4
   CountKeywordArgs: true
 
-ClassLength:
+Metrics/ClassLength:
+  Description: Avoid classes longer than 100 lines of code.
+  Enabled: true
+  CountComments: false
   Max: 100
 
-LineLength:
-  Enabled: 100
+Metrics/LineLength:
+  Description: Limit lines to 100 characters.
+  Enabled: true
+  Max: 100
 
-MethodLength:
+Metrics/MethodLength:
+  Description: Avoid methods longer than 15 lines of code.
+  Enabled: true
   CountComments: false
   Max: 15
 
-HashSyntax:
-  EnforcedStyle: ruby19
-
-EmptyLinesAroundAccessModifier:
+Metrics/BlockNesting:
+  Description: Avoid excessive block nesting
   Enabled: true
+  Max: 3
 
-EndAlignment:
-  AlignWith: variable
+Metrics/AbcSize:
+  Description: A calculated magnitude based on number of assignments, branches, and conditions.
+  Enabled: false
 
-CaseIndentation:
-  IndentWhenRelativeTo: end
-  IndentOneStep: false
-
-StringLiterals:
+Style/StringLiterals:
+  Description: Checks if uses of quotes match the configured preference.
+  Enabled: true
   EnforcedStyle: single_quotes
 
-DotPosition:
+Style/DotPosition:
+  Description: Checks the position of the dot in multi-line method calls.
+  Enabled: true
   EnforcedStyle: leading
