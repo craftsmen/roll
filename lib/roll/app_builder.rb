@@ -164,6 +164,7 @@ module Roll
     def enable_rack_deflater
       config = <<-RUBY
 
+
   # Enable deflate / gzip compression of controller-generated responses
   config.middleware.use Rack::Deflater
       RUBY
@@ -171,7 +172,7 @@ module Roll
       inject_into_file(
         'config/environments/production.rb',
         config,
-        after: "config.serve_static_assets = ENV['RAILS_SERVE_STATIC_FILES'].present?"
+        after: serve_static_files_line
       )
     end
 
@@ -395,6 +396,10 @@ you can deploy to staging and production with:
 
     def generate_secret
       SecureRandom.hex(64)
+    end
+
+    def serve_static_files_line
+      "config.serve_static_files = ENV['RAILS_SERVE_STATIC_FILES'].present?"
     end
   end
 end
