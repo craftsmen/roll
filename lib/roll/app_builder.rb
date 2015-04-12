@@ -42,6 +42,23 @@ module Roll
         'raise_delivery_errors = false', 'raise_delivery_errors = true'
     end
 
+    def set_test_delivery_method
+      config = <<-RUBY
+
+
+  # Tell Action Mailer not to deliver emails to the real world.
+  # The :test delivery method accumulates sent emails in the
+  # ActionMailer::Base.deliveries array.
+  config.action_mailer.delivery_method = :test
+      RUBY
+
+      inject_into_file(
+        'config/environments/development.rb',
+        config,
+        after: 'config.action_mailer.raise_delivery_errors = true'
+      )
+    end
+
     def raise_on_unpermitted_parameters
       action_on_unpermitted_parameters = <<-RUBY
 
