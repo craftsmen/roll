@@ -61,7 +61,6 @@ module Roll
 
     def raise_on_unpermitted_parameters
       action_on_unpermitted_parameters = <<-RUBY
-
     # Raise an ActionController::UnpermittedParameters exception when
     # a parameter is not explicitly permitted but is passed anyway.
     config.action_controller.action_on_unpermitted_parameters = :raise
@@ -153,6 +152,7 @@ module Roll
 
       config = <<-RUBY
 
+
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = SMTP_SETTINGS
       RUBY
@@ -187,7 +187,6 @@ module Roll
       config = <<-RUBY
 
 Rails.application.configure do
-  # ...
 end
       RUBY
 
@@ -376,6 +375,7 @@ git remote add production git@heroku.com:#{app_name}-production.git
       run 'chmod a+x bin/deploy'
 
       instructions = <<-MARKDOWN
+
 ## Deploying
 
 If you have previously run the `./bin/setup` script,
