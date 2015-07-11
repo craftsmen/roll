@@ -73,7 +73,7 @@ module Roll
     end
 
     def provide_setup_script
-      copy_file 'bin_setup', 'bin/setup', force: true
+      template 'bin_setup.erb', 'bin/setup', port_number: port, force: true
       run 'chmod a+x bin/setup'
     end
 
@@ -216,10 +216,10 @@ end
     end
 
     def configure_action_mailer
-      action_mailer_host 'development', "#{app_name}.local"
+      action_mailer_host 'development', 'localhost:#{port}'
       action_mailer_host 'test', 'www.example.com'
-      action_mailer_host 'staging', "staging.#{app_name}.com"
-      action_mailer_host 'production', "#{app_name}.com"
+      action_mailer_host 'staging', %{ENV.fetch('HOST')}
+      action_mailer_host 'production', %{ENV.fetch('HOST')}
     end
 
     def configure_active_job
@@ -391,6 +391,10 @@ you can deploy to staging and production with:
 
     def serve_static_files_line
       "config.serve_static_files = ENV['RAILS_SERVE_STATIC_FILES'].present?"
+    end
+
+    def port
+      @port ||= 7000
     end
   end
 end

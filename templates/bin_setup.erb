@@ -18,4 +18,6 @@ fi
 bundle exec rake db:setup
 
 # Pick a port for Foreman
-echo "port: 7000" > .foreman
+if ! grep --quiet --no-messages --fixed-strings 'port' .foreman; then
+  printf 'port: <%= config[:port_number] %>\n' >> .foreman
+fi
