@@ -6,7 +6,8 @@
 set -e
 
 # Set up Ruby dependencies via Bundler
-bundle install
+gem install bundler --conservative
+bundle check || bundle install
 
 # Set up configurable environment variables
 if [ ! -f .env ]; then
