@@ -1,5 +1,5 @@
 <% if flash.any? %>
-  <div id="flash">
+  <div class="flashes">
     <% flash.each do |key, value| -%>
       <div class="flash-<%= key %>"><%= value %></div>
     <% end -%>
