@@ -233,16 +233,6 @@ end
       configure_environment 'test', test_config
     end
 
-    def configure_time_zone
-      if using_active_record?
-        config = <<-RUBY
-    config.active_record.default_timezone = :utc
-
-        RUBY
-        inject_into_class 'config/application.rb', 'Application', config
-      end
-    end
-
     def fix_i18n_deprecation_warning
       config = <<-RUBY
     config.i18n.enforce_available_locales = true
