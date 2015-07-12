@@ -88,6 +88,7 @@ module Roll
       generate.request_specs false
       generate.routing_specs false
       generate.stylesheets false
+      generate.javascripts false
       generate.test_framework :rspec
       generate.view_specs false
     end
