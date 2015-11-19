@@ -13,14 +13,15 @@ gem 'delayed_job_mongoid', github: 'collectiveidea/delayed_job_mongoid'
 gem 'email_validator'
 gem 'high_voltage'
 gem 'jquery-rails'
-<% if using_active_record? -%>
-gem 'pg'
-<% end -%>
 <% if using_mongoid? -%>
 gem 'mongoid', github: 'mongoid/mongoid'
 <% end -%>
 gem 'neat', '~> 1.7.0'
 gem 'normalize-rails', '~> 3.0.0'
+<% if using_active_record? -%>
+gem 'pg'
+<% end -%>
+gem 'rack-canonical-host'
 gem 'rails', '~> 4.2.0'
 gem 'recipient_interceptor'
 gem 'sass-rails', '~> 5.0'
