@@ -83,6 +83,7 @@ module Roll
       say 'Setting up the development environment'
       build :raise_on_delivery_errors
       build :set_test_delivery_method
+      build :raise_on_missing_assets_in_test
       build :provide_setup_script
       build :provide_dev_prime_task
       build :configure_generators

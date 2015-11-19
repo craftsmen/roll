@@ -59,6 +59,21 @@ module Roll
       )
     end
 
+    def raise_on_missing_assets_in_test
+      config = <<-RUBY
+
+
+  # Raise an error on missing Sprockets assets
+  config.assets.raise_runtime_errors = true
+      RUBY
+
+      inject_into_file(
+        'config/environments/test.rb',
+        config,
+        after: 'Rails.application.configure do',
+      )
+    end
+
     def raise_on_unpermitted_parameters
       action_on_unpermitted_parameters = <<-RUBY
     # Raise an ActionController::UnpermittedParameters exception when
