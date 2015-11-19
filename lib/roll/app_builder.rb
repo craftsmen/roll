@@ -141,6 +141,10 @@ module Roll
       copy_file 'action_mailer.rb', 'spec/support/action_mailer.rb'
     end
 
+    def configure_shoulda_matchers
+      copy_file 'shoulda_matchers_rspec.rb', 'spec/support/shoulda_matchers.rb'
+    end
+
     def configure_travis
       template 'travis.yml.erb', '.travis.yml'
     end
