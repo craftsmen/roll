@@ -140,7 +140,7 @@ module Roll
       build :disable_xml_params
       build :setup_default_rake_task
       build :configure_unicorn
-      build :setup_foreman
+      build :setup_forego
       build :raise_on_unpermitted_parameters
     end
 

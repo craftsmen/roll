@@ -286,7 +286,7 @@ end
       copy_file 'unicorn.rb', 'config/unicorn.rb'
     end
 
-    def setup_foreman
+    def setup_forego
       copy_file 'sample.env', '.sample.env'
       copy_file 'Procfile', 'Procfile'
     end
