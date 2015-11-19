@@ -91,6 +91,7 @@ module Roll
       generate.javascripts false
       generate.test_framework :rspec
       generate.view_specs false
+      generate.factory_girl false
     end
 
       RUBY
