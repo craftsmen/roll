@@ -102,6 +102,7 @@ module Roll
       build :configure_i18n_in_specs
       build :configure_action_mailer_in_specs
       build :configure_shoulda_matchers
+      build :configure_capybara_webkit
       build :configure_travis
     end
 

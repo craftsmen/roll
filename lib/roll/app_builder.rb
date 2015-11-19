@@ -173,6 +173,10 @@ module Roll
       copy_file 'shoulda_matchers_rspec.rb', 'spec/support/shoulda_matchers.rb'
     end
 
+    def configure_capybara_webkit
+      copy_file 'capybara_webkit.rb', 'spec/support/capybara_webkit.rb'
+    end
+
     def configure_travis
       template 'travis.yml.erb', '.travis.yml'
     end
