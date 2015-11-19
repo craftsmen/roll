@@ -386,12 +386,13 @@ end
     end
 
     def set_heroku_remotes
-      remotes = <<-RUBY
+      remotes = <<-SHELL
 
 # Set up staging and production git remotes
 git remote add staging git@heroku.com:#{app_name}-staging.git
 git remote add production git@heroku.com:#{app_name}-production.git
-      RUBY
+git config heroku.remote staging
+      SHELL
 
       append_file 'bin/setup', remotes
     end
