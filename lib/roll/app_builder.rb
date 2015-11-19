@@ -20,8 +20,11 @@ module Roll
     end
 
     def use_postgres_config_template
-      template 'postgresql_database.yml.erb', 'config/database.yml',
+      template(
+        'postgresql_database.yml.erb',
+        'config/database.yml',
         force: true
+      )
     end
 
     def use_mongoid_config_template
@@ -38,8 +41,11 @@ module Roll
     end
 
     def raise_on_delivery_errors
-      replace_in_file 'config/environments/development.rb',
-        'raise_delivery_errors = false', 'raise_delivery_errors = true'
+      replace_in_file(
+        'config/environments/development.rb',
+        'raise_delivery_errors = false',
+        'raise_delivery_errors = true'
+      )
     end
 
     def set_test_delivery_method
@@ -82,9 +88,11 @@ module Roll
 
       RUBY
 
-      inject_into_class 'config/application.rb',
-                        'Application',
-                        action_on_unpermitted_parameters
+      inject_into_class(
+        'config/application.rb',
+        'Application',
+        action_on_unpermitted_parameters
+      )
     end
 
     def provide_setup_script
@@ -172,8 +180,10 @@ module Roll
     def configure_smtp
       copy_file 'smtp.rb', 'config/smtp.rb'
 
-      prepend_file 'config/environments/production.rb',
+      prepend_file(
+        'config/environments/production.rb',
         "require Rails.root.join('config/smtp')\n"
+      )
 
       config = <<-RUBY
 
@@ -182,8 +192,11 @@ module Roll
   config.action_mailer.smtp_settings = SMTP_SETTINGS
       RUBY
 
-      inject_into_file 'config/environments/production.rb', config,
+      inject_into_file(
+        'config/environments/production.rb',
+        config,
         after: 'config.action_mailer.raise_delivery_errors = false'
+      )
     end
 
     def enable_rack_deflater
@@ -235,9 +248,11 @@ end
     end
 
     def create_application_layout
-      template 'roll_layout.html.erb.erb',
+      template(
+        'roll_layout.html.erb.erb',
         'app/views/layouts/application.html.erb',
         force: true
+      )
     end
 
     def configure_action_mailer
@@ -334,9 +349,11 @@ end
     end
 
     def remove_routes_comment_lines
-      replace_in_file 'config/routes.rb',
+      replace_in_file(
+        'config/routes.rb',
         /Rails\.application\.routes\.draw do.*end/m,
         "Rails.application.routes.draw do\nend"
+      )
     end
 
     def gitignore_files
