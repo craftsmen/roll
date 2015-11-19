@@ -125,7 +125,6 @@ module Roll
     def configure_hound
       copy_file 'hound.yml', '.hound.yml'
       copy_file 'style_guides/ruby.yml', 'config/style_guides/ruby.yml'
-      copy_file 'style_guides/javascript.json', 'config/style_guides/javascript.json'
     end
 
     def generate_rspec
