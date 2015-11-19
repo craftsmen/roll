@@ -91,8 +91,9 @@ module Roll
 
     def setup_test_environment
       say 'Setting up the test environment'
-      build :set_up_factory_girl_for_rspec
       build :generate_rspec
+      build :set_up_factory_girl_for_rspec
+      build :generate_factories_file
       build :configure_rspec
       build :configure_background_jobs_for_rspec
       build :enable_database_cleaner

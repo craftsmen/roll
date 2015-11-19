@@ -104,12 +104,16 @@ module Roll
       copy_file 'style_guides/javascript.json', 'config/style_guides/javascript.json'
     end
 
+    def generate_rspec
+      generate 'rspec:install'
+    end
+
     def set_up_factory_girl_for_rspec
       copy_file 'factory_girl_rspec.rb', 'spec/support/factory_girl.rb'
     end
 
-    def generate_rspec
-      generate 'rspec:install'
+    def generate_factories_file
+      copy_file 'factories.rb', 'spec/factories.rb'
     end
 
     def configure_rspec
