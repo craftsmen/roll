@@ -44,6 +44,7 @@ module Roll
       invoke :customize_error_pages
       invoke :remove_routes_comment_lines
       invoke :setup_git
+      invoke :setup_spring
       invoke :create_heroku_apps
       invoke :outro
     end
@@ -185,6 +186,11 @@ module Roll
 
     def init_git
       build :init_git
+    end
+
+    def setup_spring
+      say 'Springifying binstubs'
+      build :setup_spring
     end
 
     def create_heroku_apps

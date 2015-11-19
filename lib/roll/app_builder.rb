@@ -394,6 +394,10 @@ end
       run 'git init'
     end
 
+    def setup_spring
+      bundle_command 'exec spring binstub --all'
+    end
+
     def create_heroku_apps(flags)
       %w(staging production).each do |environment|
         run "heroku create #{app_name}-#{environment} --remote #{environment} #{flags}"
