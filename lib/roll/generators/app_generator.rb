@@ -53,7 +53,7 @@ module Roll
       build :replace_gemfile
       build :set_ruby_to_version_being_used
 
-      if options[:heroku]
+      if !options[:skip_heroku]
         build :setup_heroku_specific_gems
       end
 
