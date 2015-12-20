@@ -173,18 +173,8 @@ module Roll
     end
 
     def setup_git
-      if !options[:skip_git]
-        say 'Initializing git'
-        invoke :setup_gitignore
-        invoke :init_git
-      end
-    end
-
-    def setup_gitignore
+      say 'Initializing git'
       build :gitignore_files
-    end
-
-    def init_git
       build :init_git
     end
 
