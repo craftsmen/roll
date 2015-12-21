@@ -329,8 +329,8 @@ end
       end
     end
 
-    def configure_unicorn
-      copy_file 'unicorn.rb', 'config/unicorn.rb'
+    def configure_puma
+      copy_file 'puma.rb', 'config/puma.rb'
     end
 
     def setup_forego
