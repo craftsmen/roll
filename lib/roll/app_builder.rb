@@ -80,6 +80,14 @@ module Roll
       )
     end
 
+    def raise_on_missing_translations
+      config = 'config.action_view.raise_on_missing_translations = true'
+
+      %w(test development).each do |environment|
+        uncomment_lines "config/environments/#{environment}.rb", config
+      end
+    end
+
     def raise_on_unpermitted_parameters
       action_on_unpermitted_parameters = <<-RUBY
     # Raise an ActionController::UnpermittedParameters exception when

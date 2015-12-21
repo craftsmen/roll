@@ -85,6 +85,7 @@ module Roll
       build :raise_on_delivery_errors
       build :set_test_delivery_method
       build :raise_on_missing_assets_in_test
+      build :raise_on_missing_translations
       build :provide_setup_script
       build :provide_dev_prime_task
       build :configure_generators
