@@ -132,7 +132,7 @@ module Roll
 
     def configure_hound
       copy_file 'hound.yml', '.hound.yml'
-      copy_file 'style_guides/ruby.yml', 'config/style_guides/ruby.yml'
+      copy_file 'linters/ruby.yml', 'config/linters/ruby.yml'
     end
 
     def generate_rspec
