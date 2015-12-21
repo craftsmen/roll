@@ -84,7 +84,6 @@ module Roll
       say 'Setting up the development environment'
       build :raise_on_delivery_errors
       build :set_test_delivery_method
-      build :raise_on_missing_assets_in_test
       build :raise_on_missing_translations
       build :provide_setup_script
       build :provide_dev_prime_task
@@ -94,6 +93,7 @@ module Roll
 
     def setup_test_environment
       say 'Setting up the test environment'
+      build :raise_on_missing_assets_in_test
       build :generate_rspec
       build :set_up_factory_girl_for_rspec
       build :generate_factories_file

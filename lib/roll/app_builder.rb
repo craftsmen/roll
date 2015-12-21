@@ -65,21 +65,6 @@ module Roll
       )
     end
 
-    def raise_on_missing_assets_in_test
-      config = <<-RUBY
-
-
-  # Raise an error on missing Sprockets assets
-  config.assets.raise_runtime_errors = true
-      RUBY
-
-      inject_into_file(
-        'config/environments/test.rb',
-        config,
-        after: 'Rails.application.configure do',
-      )
-    end
-
     def raise_on_missing_translations
       config = 'config.action_view.raise_on_missing_translations = true'
 
@@ -133,6 +118,21 @@ module Roll
     def configure_hound
       copy_file 'hound.yml', '.hound.yml'
       copy_file 'linters/ruby.yml', 'config/linters/ruby.yml'
+    end
+
+    def raise_on_missing_assets_in_test
+      config = <<-RUBY
+
+
+  # Raise an error on missing Sprockets assets
+  config.assets.raise_runtime_errors = true
+      RUBY
+
+      inject_into_file(
+        'config/environments/test.rb',
+        config,
+        after: 'Rails.application.configure do',
+      )
     end
 
     def generate_rspec
