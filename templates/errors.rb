@@ -8,21 +8,27 @@ require 'net/smtp'
 #     notify_hoptoad error
 #   end
 
-HTTP_ERRORS = [Timeout::Error,
-               Errno::EINVAL,
-               Errno::ECONNRESET,
-               EOFError,
-               Net::HTTPBadResponse,
-               Net::HTTPHeaderSyntaxError,
-               Net::ProtocolError]
+HTTP_ERRORS = [
+  EOFError,
+  Errno::ECONNRESET,
+  Errno::EINVAL,
+  Net::HTTPBadResponse,
+  Net::HTTPHeaderSyntaxError,
+  Net::ProtocolError,
+  Timeout::Error
+]
 
-SMTP_SERVER_ERRORS = [TimeoutError,
-                      IOError,
-                      Net::SMTPUnknownError,
-                      Net::SMTPServerBusy,
-                      Net::SMTPAuthenticationError]
+SMTP_SERVER_ERRORS = [
+  IOError,
+  Net::SMTPAuthenticationError,
+  Net::SMTPServerBusy,
+  Net::SMTPUnknownError,
+  Timeout::Error
+]
 
-SMTP_CLIENT_ERRORS = [Net::SMTPFatalError,
-                      Net::SMTPSyntaxError]
+SMTP_CLIENT_ERRORS = [
+  Net::SMTPFatalError,
+  Net::SMTPSyntaxError
+]
 
 SMTP_ERRORS = SMTP_SERVER_ERRORS + SMTP_CLIENT_ERRORS
