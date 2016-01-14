@@ -4,6 +4,7 @@ ruby:
 
 java_script:
   enabled: true
+  config_file: config/linters/javascript.json
 
 scss:
   enabled: true

@@ -118,6 +118,7 @@ module Roll
     def configure_hound
       copy_file 'hound.yml', '.hound.yml'
       copy_file 'linters/ruby.yml', 'config/linters/ruby.yml'
+      copy_file 'linters/javascript.json', 'config/linters/javascript.json'
     end
 
     def raise_on_missing_assets_in_test
