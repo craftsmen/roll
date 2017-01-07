@@ -50,7 +50,6 @@ module Roll
     end
 
     def customize_gemfile
-      build :replace_gemfile
       build :set_ruby_to_version_being_used
 
       if !options[:skip_heroku]
@@ -174,7 +173,7 @@ module Roll
 
     def setup_git
       say 'Initializing git'
-      build :gitignore_files
+      build :setup_default_directories
       build :init_git
     end
 

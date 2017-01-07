@@ -40,6 +40,14 @@ module Roll
       template 'README.md.erb', 'README.md'
     end
 
+    def gitignore
+     copy_file 'roll_gitignore', '.gitignore'
+    end
+
+    def gemfile
+     template 'Gemfile.erb', 'Gemfile'
+    end
+
     def raise_on_delivery_errors
       replace_in_file(
         'config/environments/development.rb',
@@ -374,9 +382,7 @@ end
       )
     end
 
-    def gitignore_files
-      remove_file '.gitignore'
-      copy_file 'roll_gitignore', '.gitignore'
+    def setup_default_directories
       [
         'app/views/pages',
         'spec/lib',
@@ -386,8 +392,7 @@ end
         'spec/support/mixins',
         'spec/support/shared_examples'
       ].each do |dir|
-        run "mkdir #{dir}"
-        run "touch #{dir}/.keep"
+        empty_directory_with_keep_file dir
       end
     end
 
