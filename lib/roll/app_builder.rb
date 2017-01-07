@@ -319,10 +319,6 @@ end
       bundle_command 'exec rails generate simple_form:install'
     end
 
-    def disable_xml_params
-      copy_file 'disable_xml_params.rb', 'config/initializers/disable_xml_params.rb'
-    end
-
     def setup_default_rake_task
       append_file 'Rakefile' do
         <<-EOS
