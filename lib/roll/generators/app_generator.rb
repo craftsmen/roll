@@ -139,7 +139,6 @@ module Roll
       build :configure_active_job
       build :configure_action_mailer
       build :configure_time_formats
-      build :fix_i18n_deprecation_warning
       build :configure_rack_timeout
       build :configure_simple_form
       build :disable_xml_params
