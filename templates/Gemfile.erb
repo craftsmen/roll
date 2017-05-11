@@ -16,15 +16,15 @@ gem 'jquery-rails'
 <% if using_mongoid? -%>
 gem 'mongoid', github: 'mongoid/mongoid'
 <% end -%>
-gem 'neat', '~> 1.8.0'
+gem 'neat', '~> 2.0.0'
 gem 'newrelic_rpm'
-gem 'normalize-rails', '~> 3.0.0'
+gem 'normalize-rails', '~> 4.1.1'
 <% if using_active_record? -%>
 gem 'pg'
 <% end -%>
 gem 'puma'
 gem 'rack-canonical-host'
-gem 'rails', '~> 4.2.0'
+gem 'rails', '~> 5.1.0'
 gem 'recipient_interceptor'
 gem 'sass-rails', '~> 5.0'
 gem 'simple_form'
@@ -42,7 +42,7 @@ group :development, :test do
   gem 'dotenv-rails'
   gem 'factory_girl_rails'
   gem 'pry-rails'
-  gem 'rspec-rails', '~> 3.4.0'
+  gem 'rspec-rails', '~> 3.5'
 end
 
 group :test do
